@@ -1,23 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./allmovies.css"
 import Card from './Card'
-function AllMovies() {
-  const [movies,setMovies]=useState([
+import axios from 'axios'
 
-    {
-      "#TITLE": "Spider-Man",
-      "#YEAR": 2002,
-      "#IMDB_ID": "tt0145487",
-      "#IMG_POSTER": "https://m.media-amazon.com/images/M/MV5BZWM0OWVmNTEtNWVkOS00MzgyLTkyMzgtMmE2ZTZiNjY4MmFiXkEyXkFqcGc@._V1_.jpg",
-    },
-    {
-      "#TITLE": "Spiderman the Verse",
-      "#YEAR": 2019,
-      "#IMDB_ID": "tt12122034",
-      "#IMG_POSTER": "https://m.media-amazon.com/images/M/MV5BNDBjNWY3OWYtMjk2ZS00NjA2LWE0NzAtOWQxNzBhNjZlMGYyXkEyXkFqcGc@._V1_.jpg",
-    } , 
-  ])
- 
+function AllMovies() {
+  const [movies,setMovies]=useState([])
+
+  useEffect(()=>{
+   axios.get("https://imdb.iamidiotareyoutoo.com/search?q=spiderman")
+  .then((response)=>{
+    console.log(response.data.description)
+    setMovies(response.data.description);})
+  },[])
+  
   return (
     <>
       <h1>All Movies</h1>
