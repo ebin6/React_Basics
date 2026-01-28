@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import "./navstyles.css"
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ThemeContext } from "../ThemeContext";
 function Navbar(){
     const [is_authenticated,setStatus]=useState(true)
+    const {theme,toggleTheme}=useContext(ThemeContext)
     return(
         <nav>
             <div className="logo">HOTSTAR</div>
@@ -12,7 +14,7 @@ function Navbar(){
                 {is_authenticated&&<button onClick={()=>setStatus(false)}>Logout</button>}
                 {is_authenticated?<li><Link to="/dashboard">Dashboard</Link></li>: <li><Link to="/register">Register</Link></li>}
               
-                
+                <li><button>{theme}</button></li>
             </ul>
         </nav>
     )
