@@ -14,7 +14,7 @@ function Navbar(){
                 {is_authenticated&&<button onClick={()=>setStatus(false)}>Logout</button>}
                 {is_authenticated?<li><Link to="/dashboard">Dashboard</Link></li>: <li><Link to="/register">Register</Link></li>}
               
-                <li><button>{theme}</button></li>
+                <li><button onClick={toggleTheme}>{theme}</button></li>
             </ul>
         </nav>
     )
